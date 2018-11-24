@@ -18,7 +18,7 @@ parser.on('readable', () => {
         // decode date in whatever format it comes in
         let date = moment(record['Date'], 'DD/MM/YYYY hh:mm:ss');
         // it might be an idea to remove characters from the customer that have trouble being in filenames
-        let customer = record['Customer'].replace(/[:\//*?()"|`~$]+/, '_')
+        let customer = record['Customer'].replace(/[:\//*?()"|`~$]+/g, '_')
         // build source and dest filenames
         let sourceFilename = path.join(sourceDir, record['Filename']);
         let destFilename = path.join(destDir, customer, date.format('MM'), path.basename(record['Filename']));
